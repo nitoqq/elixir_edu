@@ -5,8 +5,7 @@ defmodule HomeFirstAidKit do
   """
 
   @doc """
-  Домашняя аптечка, для учета наличия лекарств
-
+  Add medicament to First-Aid Kit with increase amount
   """
   def add_medicament(%Medicament{name: name, amount: amount}) do
     storage = HomeFirstAidKitStorage.load()
@@ -17,6 +16,9 @@ defmodule HomeFirstAidKit do
     {:ok, new_medicament}
   end
 
+  @doc """
+  Take medicament to First-Aid Kit with decrease amount
+  """
   def use_medicament(%{name: name, amount: amount}) do
     storage = HomeFirstAidKitStorage.load()
     value = Map.get(storage, name)
@@ -33,6 +35,9 @@ defmodule HomeFirstAidKit do
     end
   end
 
+  @doc """
+  Show available medicaments in First-Aid Kit
+  """
   def get_available_medicaments() do
     storage = HomeFirstAidKitStorage.load()
     Map.values(storage) |> Enum.filter(fn medicament -> medicament.amount > 0 end)
