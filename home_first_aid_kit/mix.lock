@@ -1,0 +1,6 @@
+%{
+  "json": {:hex, :json, "1.4.1", "8648f04a9439765ad449bc56a3ff7d8b11dd44ff08ffcdefc4329f7c93843dfa", [:mix], [], "hexpm", "9abf218dbe4ea4fcb875e087d5f904ef263d012ee5ed21d46e9dbca63f053d16"},
+  "meck": {:hex, :meck, "0.9.2", "85ccbab053f1db86c7ca240e9fc718170ee5bda03810a6292b5306bf31bae5f5", [:rebar3], [], "hexpm", "81344f561357dc40a8344afa53767c32669153355b626ea9fcbc8da6b3045826"},
+  "mock": {:hex, :mock, "0.3.8", "7046a306b71db2488ef54395eeb74df0a7f335a7caca4a3d3875d1fc81c884dd", [:mix], [{:meck, "~> 0.9.2", [hex: :meck, repo: "hexpm", optional: false]}], "hexpm", "7fa82364c97617d79bb7d15571193fc0c4fe5afd0c932cef09426b3ee6fe2022"},
+  "poison": {:hex, :poison, "6.0.0", "9bbe86722355e36ffb62c51a552719534257ba53f3271dacd20fbbd6621a583a", [:mix], [{:decimal, "~> 2.1", [hex: :decimal, repo: "hexpm", optional: true]}], "hexpm", "bb9064632b94775a3964642d6a78281c07b7be1319e0016e1643790704e739a2"},
+}
