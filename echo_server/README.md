@@ -1,6 +1,6 @@
 # EchoServer
 
-**TODO: Add description**
+**Ping-pong between distributed nodes**
 
 ## Installation
 
