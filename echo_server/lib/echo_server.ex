@@ -22,19 +22,15 @@ defmodule EchoServer do
     end
   end
 
-  defp wait_pong() do
-    receive do
-      {:pong, remote_node} ->
-        {:pong, remote_node}
-      after 1000 ->
-        {:timeoout, 1000}
-    end
-  end
-
   def ping(node) do
     pid = Node.spawn_link(node, EchoServer, :wait_ping, [])
     send(pid, {:ping, self()})
-    wait_pong()
+    receive do
+      {:pong, ^node} ->
+        {:pong, node}
+      after 1000 ->
+        {:timeoout, 1000}
+    end
   end
 
 end
