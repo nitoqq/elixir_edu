@@ -1,36 +1,36 @@
 defmodule EchoServer do
+  use GenServer
+
   @moduledoc """
   Documentation for `EchoServer`.
   """
+  # Client
 
-  @doc """
-  Echo server
-
-  ## Examples
-
-      iex> EchoServer.ping(node())
-      {:pong, :nonode@nohost}
-
-  """
-
-  def wait_ping() do
-    receive do
-      {:ping, client} ->
-        send(client, {:pong, node()})
-      after 1000 ->
-        :timeoout
-    end
+  def start_link() do
+    GenServer.start_link(__MODULE__, %{}, name: __MODULE__)
   end
 
-  def ping(node) do
-    pid = Node.spawn_link(node, EchoServer, :wait_ping, [])
-    send(pid, {:ping, self()})
-    receive do
-      {:pong, ^node} ->
-        {:pong, node}
-      after 1000 ->
-        {:timeoout, 1000}
-    end
+  def ping() do
+    GenServer.call(__MODULE__, {:ping})
   end
 
+  def ping(remote_node) do
+    GenServer.call({__MODULE__, remote_node}, {:ping})
+  end
+
+  def stop do
+    GenServer.stop(__MODULE__)
+  end
+
+  # Server (callbacks)
+
+  @impl true
+  def init(state) do
+    {:ok, state}
+  end
+
+  @impl true
+  def handle_call({:ping}, _from, state) do
+    {:reply, {:pong, node()}, state}
+  end
 end
