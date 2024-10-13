@@ -11,11 +11,11 @@ defmodule EchoServer do
   end
 
   def ping() do
-    GenServer.call(__MODULE__, {:ping})
+    GenServer.call(__MODULE__, :ping)
   end
 
   def ping(remote_node) do
-    GenServer.call({__MODULE__, remote_node}, {:ping})
+    GenServer.call({__MODULE__, remote_node}, :ping)
   end
 
   def stop do
@@ -30,7 +30,7 @@ defmodule EchoServer do
   end
 
   @impl true
-  def handle_call({:ping}, _from, state) do
+  def handle_call(:ping, _from, state) do
     {:reply, {:pong, node()}, state}
   end
 end
